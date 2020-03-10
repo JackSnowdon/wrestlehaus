@@ -57,7 +57,24 @@ class Wrestler(models.Model):
 
 class Promotion(models.Model):
     name = models.CharField(max_length=255)
+    owner = models.CharField(max_length=255)
     wrestlers = models.ManyToManyField(Wrestler, related_name='promotions', blank=True,)
+    s = "Scotland"
+    n = "North"
+    m = "Midlands"
+    so = "South"
+    i = "Ireland"
+    REGIONCHOICES = (
+        (s, "Scotland"),
+        (n, "North"),
+        (m, "Midlands"),
+        (so, "South"),
+        (i, "Ireland"),
+    )
+    region = models.CharField(max_length=10, 
+        choices=REGIONCHOICES, default="Midlands")
+    size = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(100)], default=1)
+    money = models.PositiveIntegerField(validators=[MinValueValidator(1), MaxValueValidator(100)], default=1)
 
     def __str__(self):
         return self.name

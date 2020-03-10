@@ -5,6 +5,7 @@
         <div class="jumbotron">
             <h1>World Index</h1>
             <hr>
+            <a href="{% url 'promotions' %}" role="button" class="btn btn-warning" aria-disabled="false">Promtions</a>
         </div>
     </div>
 </div>
@@ -14,7 +15,7 @@
         <div class="row text-center">
             <div class="col-12">
                 <h2>Wrestlers: </h2>
-                <a href="{% url 'add_wrestler' %}" role="button" class="btn btn-warning" aria-disabled="false">Add Wrestler</a>
+                <a href="{% url 'add_wrestler' %}" role="button" class="btn btn-warning" aria-disabled="false">Add Wrester</a>
             </div>
         </div>
         <hr> {% for w in wrestlers %}

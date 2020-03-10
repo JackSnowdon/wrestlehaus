@@ -74,3 +74,25 @@
 .world-list-delete:hover {
     color: red;
 }
+
+.wrestler-move-list {
+    padding: 0;
+}
+
+.wrestler-move-list a {
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+}
+
+.wrestler-move-list a:hover {
+    color: teal;
+}
+
+.wrestler-single-move {
+    list-style-type: none;
+}

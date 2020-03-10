@@ -86,3 +86,47 @@ def delete_move(request, pk):
 def single_move(request, pk):
     move = get_object_or_404(Move, pk=pk)
     return render(request, "single_move.html", {"move": move})
+
+
+def promotions(request):
+    promos = Promotion.objects.order_by("name")
+    return render(request, "promotions.html", {"promos": promos})
+
+
+def add_promotion(request):
+    if request.method == "POST":
+        promotion_form = PromotionForm(request.POST)
+        if promotion_form.is_valid():
+            promotion = promotion_form.save(commit=False)
+            promotion.save()
+            messages.error(request, 'Added {0}'.format(promotion.name), extra_tags='alert')
+            return redirect("promotions")
+    else:
+        promotion_form = PromotionForm()
+    return render(request, "add_promotion.html", {"promotion_form": promotion_form})
+
+
+def edit_promotion(request, pk):
+    this_promotion = Promotion.objects.get(pk=pk)
+    if request.method == "POST":
+        promotion_form = PromotionForm(request.POST, instance=this_promotion)
+        if promotion_form.is_valid():
+            promotion = promotion_form.save(commit=False)
+            promotion.save()
+            messages.error(request, 'Edited {0}'.format(promotion.name), extra_tags='alert')
+            return redirect("promotions")
+    else:
+        promotion_form = PromotionForm(instance=this_promotion)
+    return render(request, "edit_promotion.html", {"promotion_form": promotion_form, "this_promotion": this_promotion})
+
+
+def delete_promotion(request, pk):
+    instance = Promotion.objects.get(pk=pk)
+    messages.error(request, 'Deleted {0}'.format(instance.name), extra_tags='alert')
+    instance.delete()
+    return redirect(reverse('promotions'))
+
+
+def single_promotion(request, pk):
+    promo = get_object_or_404(Promotion, pk=pk)
+    return render(request, "single_promotion.html", {"promo": promo})

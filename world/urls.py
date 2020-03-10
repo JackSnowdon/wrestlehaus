@@ -11,4 +11,9 @@ urlpatterns = [
     path(r'edit_move/<int:pk>', edit_move, name="edit_move"),
     path(r'delete_move/<int:pk>', delete_move, name="delete_move"),
     path(r'single_move/<int:pk>', single_move, name="single_move"),
+    path('promotions/', promotions, name="promotions"),
+    path('add_promotion/', add_promotion, name="add_promotion"),
+    path(r'edit_promotion/<int:pk>', edit_promotion, name="edit_promotion"),
+    path(r'delete_promotion/<int:pk>', delete_promotion, name="delete_promotion"),
+    path(r'single_promotion/<int:pk>', single_promotion, name="single_promotion"),
 ]

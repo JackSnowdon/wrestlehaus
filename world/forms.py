@@ -16,3 +16,10 @@ class MoveForm(forms.ModelForm):
     class Meta:
         model = Move
         fields = '__all__'
+
+
+class PromotionForm(forms.ModelForm):
+
+    class Meta:
+        model = Promotion
+        fields = '__all__'

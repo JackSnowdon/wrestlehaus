@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% load static %} {% block page_title %} | Promotions index {% endblock %} {% block content %}
+
+<div class="row">
+    <div class="col-12 text-center">
+        <div class="jumbotron">
+            <h1>Promotions</h1>
+            <hr>
+            <a href="{% url 'add_promotion' %}" role="button" class="btn btn-warning" aria-disabled="false">Add Promotion</a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        {% for p in promos %}
+        <p class="world-list"><a href="{% url 'single_promotion' p.id %}" class="world-list-name">{{ p.name }} </a>- <a href="{% url 'edit_promotion' p.id %}" class="world-list-edit"><i class="far fa-edit"> - Edit Promotion</i></a>
+            <a href="{% url 'delete_promotion' p.id %}" class="world-list-delete" onclick="return confirm('Are you sure you to delete {{ p.name }}?');"><i class="fas fa-dumpster-fire"></i></a>
+        </p>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock %}

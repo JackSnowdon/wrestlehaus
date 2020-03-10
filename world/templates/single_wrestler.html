@@ -3,7 +3,9 @@
 <div class="row">
     <div class="col-12 text-center">
         <h1>{{ wrestler.name }}</h1>
-        <p class="small">{{ wrestler.gender }} - {{ wrestler.age }} - {{ wrestler.height }}</p>
+        <p class="small">{{ wrestler.gender }}</p>
+        <p class="small">{{ wrestler.age }} Years Old</p>
+        <p class="small">{{ wrestler.height }}"</p>
     </div>
 </div>
 
@@ -16,23 +18,36 @@
 
 <div class="row">
     <div class="col-md-2 col-12">
-        {{ wrestler.strengh }}
+        <p>Strengh: {{ wrestler.strengh }}</p>
     </div>
     <div class="col-md-2 col-12">
-        {{ wrestler.dex }}
+        <p>Dexterity: {{ wrestler.dex }}</p>
     </div>
     <div class="col-md-2 col-12">
-        {{ wrestler.heart }}
+        <p>Heart: {{ wrestler.heart }}</p>
     </div>
     <div class="col-md-2 col-12">
-        {{ wrestler.speed }}
+        <p>Speed: {{ wrestler.speed }}</p>
     </div>
     <div class="col-md-2 col-12">
-        {{ wrestler.striking }}
+        <p>Striking: {{ wrestler.striking }}</p>
     </div>
     <div class="col-md-2 col-12">
-        {{ wrestler.grappling }}
+        <p>Grappling: {{ wrestler.grappling }}</p>
     </div>
 </div>
 
-{% for m in wrestler.moves.all %} {{ m.name }} {% endfor %} {% endblock %}
+<div class="row">
+    <div class="col-12">
+        <h4>Moves:</h4>
+        <ul class="wrestler-move-list">
+            {% for m in wrestler.moves.all %}
+            <a href="{% url 'single_move' m.id %}" class="wrestler-single-move">
+                <li>- {{ m.name }}
+                </li>
+            </a>{% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
