@@ -9,3 +9,10 @@ class WrestlerForm(forms.ModelForm):
         labels = {
             "dex": "Dexterity",
         }
+
+
+class MoveForm(forms.ModelForm):
+
+    class Meta:
+        model = Move
+        fields = '__all__'

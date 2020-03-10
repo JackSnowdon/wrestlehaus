@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %} {% block page_title %} | Add Move {% endblock %} {% block content %}
+
+<div class="row">
+    <div class="col-12 text-center">
+        <h1>New Move</h1>
+    </div>
+</div>
+
+<form role="form" method="post" id="new_move" action="{% url 'add_move' %}">
+    <div class="form-group body-text">
+        {% csrf_token %}
+        <br>
+        <div class="form-row">
+            <div class="form-group col-md-3 mb-0">
+                {{ move_form.name|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-3 mb-0">
+                {{ move_form.cost|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-3 mb-0">
+                {{ move_form.power|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-3 mb-0">
+                {{ move_form.move_type|as_crispy_field }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <input class="btn btn-success" id="submit_move" name="commit" type="submit" value="Add Move">
+            </div>
+        </div>
+        <br>
+    </div>
+</form>
+
+
+{% endblock %}

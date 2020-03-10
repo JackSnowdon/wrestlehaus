@@ -7,7 +7,8 @@ from .forms import *
 
 def world_index(request):
     wrestlers = Wrestler.objects.order_by("name")
-    return render(request, "world_index.html", {"wrestlers": wrestlers})
+    moves = Move.objects.order_by("name")
+    return render(request, "world_index.html", {"wrestlers": wrestlers, "moves": moves})
 
 def add_wrestler(request):
     if request.method == "POST":
@@ -17,7 +18,6 @@ def add_wrestler(request):
             wrestler.save()
             messages.error(request, 'Added {0}'.format(wrestler.name), extra_tags='alert')
             return redirect("world_index")
-
     else:
         wrestler_form = WrestlerForm()
     return render(request, "add_wrestler.html", {"wrestler_form": wrestler_form})
@@ -39,6 +39,41 @@ def edit_wrestler(request, pk):
 
 def delete_wrestler(request, pk):
     instance = Wrestler.objects.get(pk=pk)
+    messages.error(request, 'Deleted {0}'.format(instance.name), extra_tags='alert')
+    instance.delete()
+    return redirect(reverse('world_index'))
+
+
+
+def add_move(request):
+    if request.method == "POST":
+        move_form = MoveForm(request.POST)
+        if move_form.is_valid():
+            move = move_form.save(commit=False)
+            move.save()
+            messages.error(request, 'Added {0}'.format(move.name), extra_tags='alert')
+            return redirect("world_index")
+    else:
+        move_form = MoveForm()
+    return render(request, "add_move.html", {"move_form": move_form})
+
+
+def edit_move(request, pk):
+    this_move = Move.objects.get(pk=pk)
+    if request.method == "POST":
+        move_form = MoveForm(request.POST, instance=this_move)
+        if move_form.is_valid():
+            move = move_form.save(commit=False)
+            move.save()
+            messages.error(request, 'Edited {0}'.format(move.name), extra_tags='alert')
+            return redirect("world_index")
+    else:
+        move_form = MoveForm(instance=this_move)
+    return render(request, "edit_move.html", {"move_form": move_form})
+
+
+def delete_move(request, pk):
+    instance = Move.objects.get(pk=pk)
     messages.error(request, 'Deleted {0}'.format(instance.name), extra_tags='alert')
     instance.delete()
     return redirect(reverse('world_index'))
