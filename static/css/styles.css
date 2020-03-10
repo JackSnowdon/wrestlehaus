@@ -38,3 +38,39 @@
     color: #f4f4f4;
     margin: 8px 2px;
 }
+
+
+/* World */
+
+.world-list a {
+    text-decoration: none;
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+}
+
+.world-list-name {
+    color: #2d2b0e;
+    font-size: 28px;
+}
+
+.world-list-name:hover {
+    color: green;
+}
+
+.world-list-edit {
+    color: teal;
+}
+
+.world-list-edit:hover {
+    color: #74a812;
+}
+
+.world-list-delete {
+    color: #4b0b0b
+}
+
+.world-list-delete:hover {
+    color: red;
+}

@@ -18,7 +18,9 @@
             </div>
         </div>
         <hr> {% for w in wrestlers %}
-        <p>{{ w.name }} - <a href="{% url 'edit_wrestler' w.id %}" class=""><i class="far fa-edit"> - Edit Stats</i></a> - <a href="{% url 'delete_wrestler' w.id %}" class="" onclick="return confirm('Are you sure you to delete {{ w.name }}?');"><i class="fas fa-dumpster-fire"></i></a></p>
+        <p class="world-list"><a href="{% url 'single_wrestler' w.id %}" class="world-list-name">{{ w.name }} </a> - <a href="{% url 'edit_wrestler' w.id %}" class="world-list-edit"><i class="far fa-edit"> - Edit Stats</i></a> -
+            <a href="{% url 'delete_wrestler' w.id %}" class="world-list-delete" onclick="return confirm('Are you sure you to delete {{ w.name }}?');"><i class="fas fa-dumpster-fire"></i></a>
+        </p>
         {% endfor %}
     </div>
     <div class="col-md-6 col-12">
@@ -29,7 +31,9 @@
             </div>
         </div>
         <hr> {% for m in moves %}
-        <p>{{ m.name }} - <a href="{% url 'edit_move' m.id %}" class=""><i class="far fa-edit"> - Edit Move</i></a> - <a href="{% url 'delete_move' m.id %}" class="" onclick="return confirm('Are you sure you to delete {{ m.name }}?');"><i class="fas fa-dumpster-fire"></i></a></p>
+        <p class="world-list"><a href="{% url 'single_move' m.id %}" class="world-list-name">{{ m.name }} </a>- <a href="{% url 'edit_move' m.id %}" class="world-list-edit"><i class="far fa-edit"> - Edit Move</i></a> -
+            <a href="{% url 'delete_move' m.id %}" class="world-list-delete" onclick="return confirm('Are you sure you to delete {{ m.name }}?');"><i class="fas fa-dumpster-fire"></i></a>
+        </p>
         {% endfor %}
     </div>
 </div>

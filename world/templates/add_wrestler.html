@@ -6,6 +6,13 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-12 mb-3">
+        <a href="{% url 'world_index' %}" role="button" class="btn btn-warning" aria-disabled="false">Back</a>
+    </div>
+</div>
+
+
 <form role="form" method="post" id="new base" action="{% url 'add_wrestler' %}">
     <div class="form-group body-text">
         {% csrf_token %}

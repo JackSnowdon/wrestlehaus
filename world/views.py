@@ -44,6 +44,10 @@ def delete_wrestler(request, pk):
     return redirect(reverse('world_index'))
 
 
+def single_wrestler(request, pk):
+    wrestler = get_object_or_404(Wrestler, pk=pk)
+    return render(request, "single_wrestler.html", {"wrestler": wrestler})
+
 
 def add_move(request):
     if request.method == "POST":
@@ -77,3 +81,8 @@ def delete_move(request, pk):
     messages.error(request, 'Deleted {0}'.format(instance.name), extra_tags='alert')
     instance.delete()
     return redirect(reverse('world_index'))
+
+
+def single_move(request, pk):
+    move = get_object_or_404(Move, pk=pk)
+    return render(request, "single_move.html", {"move": move})
