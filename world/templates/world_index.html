@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% load static %} {% block page_title %} | World Index {% endblock %} {% block content %}
+
+<div class="row">
+    <div class="col-12 text-center">
+        <div class="jumbotron">
+            <h1>World Index</h1>
+            <hr>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-12">
+        <a href="{% url 'add_wrestler' %}" role="button" class="btn btn-warning" aria-disabled="false">Add Wrestler</a>
+        <hr> {% for w in wrestlers %}
+        <p>{{ w.name }} - <a href="{% url 'edit_wrestler' w.id %}" class=""><i class="far fa-edit"> - Edit Stats</i></a> - <a href="{% url 'delete_wrestler' w.id %}" class="" onclick="return confirm('Are you sure you to delete {{ w.name }}?');"><i class="fas fa-dumpster-fire"></i></a></p>
+        {% endfor %}
+    </div>
+    <div class="col-md-6 col-12"></div>
+</div>
+
+{% endblock %}

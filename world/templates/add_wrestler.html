@@ -1,0 +1,67 @@
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %} {% block page_title %} | Add Wrestler {% endblock %} {% block content %}
+
+<div class="row">
+    <div class="col-12 text-center">
+        <h1>New Wrestler</h1>
+    </div>
+</div>
+
+<form role="form" method="post" id="new base" action="{% url 'add_wrestler' %}">
+    <div class="form-group body-text">
+        {% csrf_token %}
+        <p>Choose Your Name</p>
+        <div class="form-row">
+            <div class="form-group col-md-10 mb-0">
+                {{ wrestler_form.name|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-2 mb-0">
+                {{ wrestler_form.gender|as_crispy_field }}
+            </div>
+        </div>
+        <br>
+        <div class="form-row">
+            <div class="form-group col-md-3 mb-0">
+                {{ wrestler_form.height|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-3 mb-0">
+                {{ wrestler_form.age|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-3 mb-0">
+                {{ wrestler_form.strengh|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-3 mb-0">
+                {{ wrestler_form.dex|as_crispy_field }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3 mb-0">
+                {{ wrestler_form.heart|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-3 mb-0">
+                {{ wrestler_form.speed|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-3 mb-0">
+                {{ wrestler_form.striking|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-3 mb-0">
+                {{ wrestler_form.grappling|as_crispy_field }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12 mb-0">
+
+                {{ wrestler_form.moves|as_crispy_field }}
+                <p class="small">Hold Down Ctrl To Add Moves</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <input class="btn btn-success" id="submit_wrestler" name="commit" type="submit" value="Add Wrestler">
+            </div>
+        </div>
+        <br>
+    </div>
+</form>
+
+
+{% endblock %}

@@ -5,8 +5,7 @@ from people.models import *
 
 class Promotion(models.Model):
     name = models.CharField(max_length=255)
-    wrestlers = models.ForeignKey(Wrestler, related_name='promotions', on_delete=models.PROTECT, blank=True,
-        null=True)
+    wrestlers = models.ManyToManyField(Wrestler, related_name='promotions', blank=True,)
 
     def __str__(self):
         return self.name
