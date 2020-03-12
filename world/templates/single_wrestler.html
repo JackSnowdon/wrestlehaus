@@ -50,4 +50,17 @@
     </div>
 </div>
 
+
+<div class="row">
+    <div class="col-12">
+        <h4>Promotions:</h4>
+        <ul class="wrestler-move-list">
+            {% for p in wrestler.promotions.all %}
+            <a href="{% url 'single_promotion' p.id %}" class="wrestler-single-move">
+                <li>- {{ p.name }}
+                </li>
+            </a>{% endfor %}
+        </ul>
+    </div>
+</div>
 {% endblock %}

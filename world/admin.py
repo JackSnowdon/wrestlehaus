@@ -6,3 +6,4 @@ from .models import *
 admin.site.register(Promotion)
 admin.site.register(Move)
 admin.site.register(Wrestler)
+admin.site.register(Match)

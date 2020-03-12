@@ -5,7 +5,7 @@
         <div class="jumbotron">
             <h1>World Index</h1>
             <hr>
-            <a href="{% url 'promotions' %}" role="button" class="btn btn-warning" aria-disabled="false">Promtions</a>
+            <a href="{% url 'promotions' %}" role="button" class="btn btn-warning" aria-disabled="false">Promotions</a>
         </div>
     </div>
 </div>
@@ -39,4 +39,15 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-12 text-center">
+        <h2>Matches:</h2>
+        <a href="{% url 'add_match' %}" role="button" class="btn btn-warning" aria-disabled="false">Add Match</a>
+    </div>
+    <div class="col-12">
+        {% for m in matches %}
+        <p class="world-list">{{ m.name }}<a href="{% url 'delete_match' m.id %}" class="world-list-delete" onclick="return confirm('Are you sure you to delete {{ m.name }}?');"><i class="fas fa-dumpster-fire"></i></a></p>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

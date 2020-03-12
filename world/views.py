@@ -8,7 +8,8 @@ from .forms import *
 def world_index(request):
     wrestlers = Wrestler.objects.order_by("name")
     moves = Move.objects.order_by("name")
-    return render(request, "world_index.html", {"wrestlers": wrestlers, "moves": moves})
+    matches = Match.objects.order_by("name")
+    return render(request, "world_index.html", {"wrestlers": wrestlers, "moves": moves, "matches": matches})
 
 def add_wrestler(request):
     if request.method == "POST":
@@ -130,3 +131,26 @@ def delete_promotion(request, pk):
 def single_promotion(request, pk):
     promo = get_object_or_404(Promotion, pk=pk)
     return render(request, "single_promotion.html", {"promo": promo})
+
+
+def add_match(request):
+    if request.method == "POST":
+        match_form = MatchForm(request.POST)
+        if match_form.is_valid():
+            match = match_form.save(commit=False)            
+            match.save()
+            mid = str(match.pk)
+            match.name = 'Match Number: {0}'.format(mid)
+            messages.error(request, 'Started {0}'.format(match.name), extra_tags='alert')
+            match.save()
+            return redirect("world_index")
+    else:
+         match_form = MatchForm()
+    return render(request, "add_match.html", {"match_form": match_form})
+
+
+def delete_match(request, pk):
+    instance = Match.objects.get(pk=pk)
+    messages.error(request, 'Deleted {0}'.format(instance.name), extra_tags='alert')
+    instance.delete()
+    return redirect(reverse('world_index'))

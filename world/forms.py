@@ -23,3 +23,10 @@ class PromotionForm(forms.ModelForm):
     class Meta:
         model = Promotion
         fields = '__all__'
+
+
+class MatchForm(forms.ModelForm):
+
+    class Meta:
+        model = Match
+        fields = ['fighters']
