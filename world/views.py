@@ -17,6 +17,7 @@ def add_wrestler(request):
         if wrestler_form.is_valid():
             wrestler = wrestler_form.save(commit=False)
             wrestler.save()
+            wrestler_form.save_m2m()
             messages.error(request, 'Added {0}'.format(wrestler.name), extra_tags='alert')
             return redirect("world_index")
     else:
@@ -31,6 +32,7 @@ def edit_wrestler(request, pk):
         if wrestler_form.is_valid():
             wrestler = wrestler_form.save(commit=False)
             wrestler.save()
+            wrestler_form.save_m2m()
             messages.error(request, 'Edited {0}'.format(wrestler.name), extra_tags='alert')
             return redirect("world_index")
     else:
@@ -100,6 +102,7 @@ def add_promotion(request):
         if promotion_form.is_valid():
             promotion = promotion_form.save(commit=False)
             promotion.save()
+            promotion_form.save_m2m()
             messages.error(request, 'Added {0}'.format(promotion.name), extra_tags='alert')
             return redirect("promotions")
     else:
@@ -114,6 +117,7 @@ def edit_promotion(request, pk):
         if promotion_form.is_valid():
             promotion = promotion_form.save(commit=False)
             promotion.save()
+            promotion_form.save_m2m()
             messages.error(request, 'Edited {0}'.format(promotion.name), extra_tags='alert')
             return redirect("promotions")
     else:

@@ -21,7 +21,9 @@
             <a href="{% url 'single_wrestler' f.id %}" class="wrestler-single-move">
                 <li>- {{ f.name }}
                 </li>
-            </a>{% endfor %}
+            </a>
+            <p>Heart: {{ f.heart }}</p>
+            {% endfor %}
         </ul>
     </div>
 </div>
