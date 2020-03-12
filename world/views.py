@@ -143,10 +143,16 @@ def add_match(request):
             match.name = 'Match Number: {0}'.format(mid)
             messages.error(request, 'Started {0}'.format(match.name), extra_tags='alert')
             match.save()
+            match_form.save_m2m()
             return redirect("world_index")
     else:
          match_form = MatchForm()
     return render(request, "add_match.html", {"match_form": match_form})
+
+
+def view_match(request, pk):
+    match = get_object_or_404(Match , pk=pk)
+    return render(request, "view_match.html", {"match": match})
 
 
 def delete_match(request, pk):

@@ -46,7 +46,7 @@
     </div>
     <div class="col-12">
         {% for m in matches %}
-        <p class="world-list">{{ m.name }}<a href="{% url 'delete_match' m.id %}" class="world-list-delete" onclick="return confirm('Are you sure you to delete {{ m.name }}?');"><i class="fas fa-dumpster-fire"></i></a></p>
+        <p class="world-list"><a href="{% url 'view_match' m.id %}" class="world-list-name">{{ m.name }} </a> - <a href="{% url 'delete_match' m.id %}" class="world-list-delete" onclick="return confirm('Are you sure you to delete {{ m.name }}?');"><i class="fas fa-dumpster-fire"></i></a></p>
         {% endfor %}
     </div>
 </div>

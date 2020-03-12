@@ -18,4 +18,5 @@ urlpatterns = [
     path(r'single_promotion/<int:pk>', single_promotion, name="single_promotion"),
     path('add_match/', add_match, name="add_match"),
     path(r'delete_match/<int:pk>', delete_match, name="delete_match"),
+    path(r'view_match/<int:pk>', view_match, name="view_match"),
 ]
