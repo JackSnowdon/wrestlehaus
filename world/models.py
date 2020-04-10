@@ -85,6 +85,5 @@ class Match(models.Model):
     fighters = models.ManyToManyField(Wrestler, related_name='matches', blank=True, )
     won_by = models.ForeignKey(Wrestler, blank=True,  null=True, on_delete=models.CASCADE)
 
-
     def __str__(self):
         return self.name

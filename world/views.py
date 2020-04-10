@@ -143,12 +143,19 @@ def add_match(request):
         if match_form.is_valid():
             match = match_form.save(commit=False)            
             match.save()
+            match_form.save_m2m()
             mid = str(match.pk)
             match.name = 'Match Number: {0}'.format(mid)
-            messages.error(request, 'Started {0}'.format(match.name), extra_tags='alert')
-            match.save()
-            match_form.save_m2m()
-            return redirect("world_index")
+            nowres = match.fighters.all().count()
+            if nowres == 0:
+                messages.error(request, 'No wrestlers selected, match deleted', extra_tags='alert')
+                instance = Match.objects.get(pk=mid)
+                instance.delete()
+                return redirect("world_index")
+            else:
+                messages.error(request, 'Started {0}'.format(match.name), extra_tags='alert')
+                match.save()
+                return redirect("world_index")
     else:
          match_form = MatchForm()
     return render(request, "add_match.html", {"match_form": match_form})
